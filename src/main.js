@@ -7,16 +7,25 @@ import router from './router.js'
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+Vue.http.options.root='http://47.89.21.179:8080';
+Vue.http.options.emulateJSON=true;
 
-import app from './App.vue'
+import app from './App.vue' // 根组件
 
-import {Header,Swipe,SwipeItem} from 'mint-ui';
+import {Header,Swipe,SwipeItem,Button} from 'mint-ui'; // Mint-UI
 Vue.component(Header.name,Header);
 Vue.component(Swipe.name,Swipe);
 Vue.component(SwipeItem.name,SwipeItem);
+Vue.component(Button.name,Button);
 
-import './lib/mui/css/mui.min.css'
+import './lib/mui/css/mui.min.css' // MUI
 import './lib/mui/css/icons-extra.css'
+
+import moment from "moment" // 格式化日期
+
+Vue.filter('dateFormat',function(dateStr,pattern="YYYY-MM-DD HH:mm:ss"){
+  return moment(dateStr).format(pattern);
+});
 
 const vm=new Vue({
   el:'#app',

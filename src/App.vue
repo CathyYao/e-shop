@@ -38,6 +38,7 @@ export default {
 .app-container{
 	background-color:#fff;
   padding-top:40px;
+	padding-bottom:50px;
 	overflow-x:hidden;
 }
 

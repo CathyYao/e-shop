@@ -8,9 +8,10 @@
     </mt-swipe>
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-6">
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+      <router-link to="/home/newslist">
         <img src="../../images/grid/menu1.png" alt="">
-        <div class="mui-media-body">新闻资讯</div></a></li>
+        <div class="mui-media-body">新闻资讯</div></router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
         <img src="../../images/grid/menu2.png" alt="">
         <div class="mui-media-body">图片分享</div></a></li>
@@ -41,10 +42,13 @@ export default {
   },
   methods:{
     getSwipe(){ // 获取轮播图数据
-      this.$http.get("http://47.89.21.179:8080/api/getlunbo").then(response=>{
-        // 成功返回
-        console.log(response.body);
-        this.swipeList=response.body.message;
+      this.$http.get("api/getlunbo").then(response=>{
+        // console.log(response.body);
+        if(response.body.status===0){ //成功返回
+          this.swipeList=response.body.message;
+        }else{
+          Toast("加载轮播图失败");
+        }
       },response=>{
         Toast("加载轮播图失败");
       })
@@ -61,16 +65,6 @@ export default {
   height:200px;
 
   .mint-swipe-item{
-    &:nth-child(1){
-      background-color:red;
-    }
-    &:nth-child(2){
-      background-color:blue;
-    }
-    &:nth-child(3){
-      background-color:green;
-    }
-
     img{
       width:100%;
       height:100%;
