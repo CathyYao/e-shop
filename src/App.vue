@@ -7,7 +7,7 @@
 			<router-view></router-view>
 		</transition>
     <!-- Tabbar区域 -->
-    <nav class="mui-bar mui-bar-tab">
+    <nav class="mui-bar mui-bar-tab" style="passiveListeners: false">
 			<router-link class="mui-tab-item" to="/home">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
@@ -29,17 +29,28 @@
 </template>
 
 <script>
+import mui from './lib/mui/js/mui.min.js'
+
 export default {
-  
+	mounted(){
+		mui('.mui-bar-tab').on('click','.mui-tab-item',function(){ // 使底部选项卡重新可点击
+			document.location.href=this.href;
+		});
+	}
 }
 </script>
 
 <style lang="scss" scoped>
+*{touch-action:none;} // 去掉报错信息，触摸事件不会产生默认行为，但仍可触摸
 .app-container{
 	background-color:#fff;
   padding-top:40px;
 	padding-bottom:50px;
 	overflow-x:hidden;
+}
+
+.mint-header{
+	z-index:999;
 }
 
 .v-enter{

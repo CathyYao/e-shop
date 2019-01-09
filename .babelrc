@@ -1,11 +1,13 @@
 {
   "presets":["@babel/preset-env"],
   "plugins":["@babel/plugin-transform-runtime",
+    "transform-remove-strict-mode",
     ["component",
       {
         "libraryName":"mint-ui",
         "style":true
       }
     ]
-    ]
+  ],
+  "ignore":["./src/lib/mui/js/mui.min.js"]
 }

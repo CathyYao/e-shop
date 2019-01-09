@@ -10,13 +10,20 @@ Vue.use(VueResource)
 Vue.http.options.root='http://47.89.21.179:8080';
 Vue.http.options.emulateJSON=true;
 
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 import app from './App.vue' // 根组件
 
-import {Header,Swipe,SwipeItem,Button} from 'mint-ui'; // Mint-UI
+/*import {Header,Swipe,SwipeItem,Button,Lazyload} from 'mint-ui'; // Mint-UI
 Vue.component(Header.name,Header);
 Vue.component(Swipe.name,Swipe);
 Vue.component(SwipeItem.name,SwipeItem);
 Vue.component(Button.name,Button);
+Vue.use(Lazyload)*/
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css';
+Vue.use(Mint);
 
 import './lib/mui/css/mui.min.css' // MUI
 import './lib/mui/css/icons-extra.css'
