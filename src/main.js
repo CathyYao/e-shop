@@ -7,7 +7,7 @@ import router from './router.js'
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
-Vue.http.options.root='http://47.89.21.179:8080';
+Vue.http.options.root='http://www.liulongbin.top:3005';
 Vue.http.options.emulateJSON=true;
 
 import VuePreview from 'vue-preview'

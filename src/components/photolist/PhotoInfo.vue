@@ -51,6 +51,7 @@ export default{
           response.body.message.forEach(item=>{
             item.w=600;
             item.h=400;
+            item.msrc=item.src;
           })
           this.thumbList=response.body.message;
         }else{
@@ -71,7 +72,7 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .photoinfo-container{
   margin:0 4px;
   .title{
@@ -87,9 +88,15 @@ export default{
   }
   .thumb-list{
     figure{
-      height:20px;
-      margin:10px;
+      display:inline-block;
+      width:100px;
+      height:100px;
+      margin:17px;
       box-shadow:0 0 8px #999;
+      img{
+        width:100px;
+        height:100px;
+      }
     }
   }
   .content{
