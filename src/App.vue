@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- Header区域 -->
-    <mt-header fixed title="固定在顶部"></mt-header>
+    <mt-header fixed title="电子商城">
+			<span slot="left" @click="goBack" v-show="flag">
+    		<mt-button icon="back">返回</mt-button>
+  		</span>
+		</mt-header>
     <!-- 路由区域 -->
 		<transition>
 			<router-view></router-view>
@@ -18,7 +22,7 @@
 			</router-link>
 			<router-link class="mui-tab-item" to="/cart">
 				<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-					<span class="mui-badge" id="badge">0</span>
+					<span class="mui-badge" id="badge">{{$store.getters.getAllCounts}}</span>
 				</span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
@@ -34,6 +38,24 @@
 import mui from './lib/mui/js/mui.min.js'
 
 export default {
+	data(){
+		return {
+			flag:false
+		}
+	},
+	methods:{
+		goBack(){
+			this.$router.go(-1);
+		}
+	},
+	watch:{
+		'$route.path':function(newVal){
+			this.flag=(newVal==='/home')?false:true;
+		}
+	},
+	created(){
+		this.flag=(this.$route.path==='/home')?false:true;
+	},
 	mounted(){
 		mui('.mui-bar-tab').on('click','.mui-tab-item',function(){ // 使底部选项卡重新可点击
 			document.location.href=this.href;

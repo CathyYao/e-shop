@@ -52,7 +52,6 @@
 </template>
 
 <script>
-import {Toast} from 'mint-ui';
 import swiper from '../Swiper.vue' // 轮播图组件
 import numbox from './GoodsInfo_numbox.vue' // numbox组件
 
@@ -102,6 +101,14 @@ export default{
     },
     addToShopCart(){ // 加入购物车
       this.ballFlag=!this.ballFlag;
+      const goodsInfo={ // 将商品信息拼接成一个对象，提交至store
+        id:this.id,
+        count:this.selectedCount,
+        price:this.goodsInfo.sell_price,
+        selected:true,
+      };
+      this.$store.commit("addToShopCart",goodsInfo);
+      // console.log(this.$store.state.goodsList);
     },
     beforeEnter(el){ // 半场动画
       el.style.transform='translate(0,0)';
